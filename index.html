@@ -10,30 +10,20 @@
 	
 <script>
 var obj = $.getJSON("https://raw.githubusercontent.com/goit-fe/markup_fe2o/master/js_19-20/data.json",
-      function(obj){
-      	
-		console.log(obj);
+function(obj){
+    console.log(obj);
+    var sk = _.uniq(_.flattenDeep(_.map(obj, 'skills')));
+	sk = _.sortBy(sk);
+	console.log("Skills: ", sk)	;
 
-var sk = _.uniq(_.flattenDeep(_.map(obj, 'skills')));
-sk = _.sortBy(sk);
-console.log("Skills: ", sk)	;
+	var names = _.sortBy(obj, 'friends.length');
+	names = _.map(names, 'name');
+	console.log("Names: ",names);
 
-
-
-var names = _.sortBy(obj, 'friends.length');
-names = _.map(names, 'name');
-console.log(names);
-
-var friends = _.flattenDeep(_.map(obj, 'friends'));
-friends = _.uniq(_.map(friends, 'name'));
-
-console.log("Friends: ", friends);
-
-
+	var friends = _.flattenDeep(_.map(obj, 'friends'));
+	friends = _.uniq(_.map(friends, 'name'));
+	console.log("Friends: ", friends);
 });
-
-
-
-	</script>
+</script>
 </body>
 </html>
